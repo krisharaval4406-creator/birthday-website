@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share My Birthday Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #e1d5f7 50%, #b3e5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #c4b5fd;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .qr-section {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .qr-section img {
+            max-width: 250px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .url-section {
+            background: #fffacd;
+            border-left: 4px solid #ff69b4;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .url-section code {
+            color: #ff69b4;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            background: #ff1493;
+            transform: scale(1.05);
+        }
+        .share-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .share-btn {
+            padding: 15px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            background: white;
+            color: #ff69b4;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .share-btn:hover {
+            background: #ff69b4;
+            color: white;
+            transform: translateY(-5px);
+        }
+        .info-text {
+            color: #666;
+            font-size: 14px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎂 Happy Birthday HASTI! 🎂</h1>
+        <p class="subtitle">Share the Website with Friends</p>
+
+        <div class="qr-section">
+            <h3 style="color: #ff69b4; margin-bottom: 15px;">📱 Scan the QR Code</h3>
+            <img src="birthday_qr_code.png" alt="Birthday Website QR Code">
+            <p style="color: #666; font-size: 14px;">Use your phone camera to scan</p>
+        </div>
+
+        <div class="url-section">
+            <h3 style="color: #ff69b4; margin-bottom: 10px;">🔗 Or Copy the Link</h3>
+            <code>http://10.75.147.189:8000</code>
+            <button class="copy-btn" onclick="copyURL()">📋 Copy Link</button>
+            <p style="color: #666; font-size: 12px; margin-top: 10px;">Make sure they're on the same WiFi!</p>
+        </div>
+
+        <div class="share-options">
+            <a href="whatsapp://send?text=Check%20out%20my%20birthday%20website!%20http://10.75.147.189:8000" class="share-btn">
+                <span>💬</span>
+                WhatsApp
+            </a>
+            <button class="share-btn" onclick="shareEmail()">
+                <span>📧</span>
+                Email
+            </button>
+            <button class="share-btn" onclick="copyURL()">
+                <span>📋</span>
+                Copy URL
+            </button>
+            <button class="share-btn" onclick="shareText()">
+                <span>📱</span>
+                Share
+            </button>
+        </div>
+
+        <div class="info-text">
+            ⚠️ <strong>Important:</strong> Friends must be on the same WiFi network as your computer to access the website.
+            Keep your server running (python -m http.server 8000)
+        </div>
+    </div>
+
+    <script>
+        function copyURL() {
+            const url = "http://10.75.147.189:8000";
+            navigator.clipboard.writeText(url);
+            alert('✅ Link copied to clipboard!\n\n' + url);
+        }
+
+        function shareEmail() {
+            const subject = "Happy Birthday Website";
+            const body = "Check out my birthday website! http://10.75.147.189:8000";
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function shareText() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Birthday Website',
+                    text: 'Check out my birthday website!',
+                    url: 'http://10.75.147.189:8000'
+                });
+            } else {
+                alert('Share feature not available on your device');
+            }
+        }
+    </script>
+</body>
+</html>

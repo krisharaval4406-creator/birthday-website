@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Birthday">
+    <meta name="theme-color" content="#ff69b4">
+    <title>Memory Details 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Hearts -->
+    <div class="cursor-heart"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="hti.mpeg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control -->
+    <div class="music-control">
+        <button id="musicBtn" class="music-btn">🎵</button>
+    </div>
+
+    <!-- Memory Detail Section -->
+    <section class="memory-detail-section">
+        <div class="memory-detail-container">
+            <a href="index.html" class="back-btn">← Back to Memories</a>
+            
+            <div class="memory-detail-content">
+                <div class="memory-detail-emoji" id="memoryEmoji">📷</div>
+                <h1 class="memory-detail-title" id="memoryTitle">Our First Memory 🌟</h1>
+                
+                <div class="memory-detail-media">
+                    <img id="memoryImage" class="memory-detail-image" src="" alt="Memory" style="display: none;">
+                    <video id="memoryVideo" class="memory-detail-video" src="" controls style="display: none;"></video>
+                </div>
+                
+                <div class="memory-detail-text">
+                    <p id="memoryDescription" class="memory-description">
+                        Add your special memory story here...
+                    </p>
+                </div>
+
+                <div class="memory-detail-actions">
+                    <button class="memory-share-btn" id="shareBtn">💌 Share This Memory</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="memory-detail.js"></script>
+</body>
+</html>

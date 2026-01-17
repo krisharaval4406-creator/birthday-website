@@ -1,0 +1,34 @@
+
+SUBJECT: You're Invited to My Birthday Surprise! 🎂💕
+
+BODY:
+─────────────────────────────────────────────────────
+
+Hi [Friend's Name],
+
+I created a special birthday website and I'd love for you to check it out! 
+
+🎉 It has:
+✨ Beautiful memories and photos
+🎵 A special song in the background
+💌 A heartfelt birthday letter
+📸 Interactive galleries
+💕 And more surprises!
+
+HOW TO ACCESS:
+─────────────────────────────────────────────────────
+
+METHOD 1: Scan QR Code
+📱 Scan the attached QR code image (birthday_qr_code.png)
+
+METHOD 2: Direct Link
+🔗 http://10.75.147.189:8000
+
+⚠️  Important: You must be on the same WiFi network to access it.
+   Make sure you're connected to the same WiFi as the host!
+
+I can't wait to show you! Let me know what you think 💕
+
+Thanks for being such an amazing friend!
+
+[Your Name]

@@ -1,0 +1,813 @@
+
+/* ===== MEMORY VIEWER MODAL ===== */
+.memory-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.memory-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.memory-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+.memory-modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10001;
+}
+
+@keyframes modalPop {
+    from {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.memory-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff69b4, #c4b5fd);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-modal-close:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+}
+
+/* ===== MEMORY VIEWER COMMON ===== */
+.memory-viewer {
+    animation: fadeInUp 0.5s ease;
+}
+
+.memory-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.memory-title {
+    font-size: 50px;
+    margin: 0;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.gallery-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid rgba(255, 105, 180, 0.2);
+}
+
+.nav-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff69b4, #c4b5fd);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+}
+
+.image-counter {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff69b4;
+}
+
+/* ===== ROMANTIC VIEWER ===== */
+.romantic-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.romantic-image-wrapper {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
+}
+
+.romantic-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.romantic-intro {
+    font-size: 20px;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.romantic-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 30px;
+}
+
+.romantic-hearts .heart {
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.romantic-hearts .heart:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.romantic-hearts .heart:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ===== FUNNY VIEWER ===== */
+.funny-header {
+    background: linear-gradient(135deg, #ffb6d9, #ffd9e3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.funny-gallery {
+    margin-bottom: 30px;
+}
+
+.funny-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.funny-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    animation: slideUp 0.6s ease;
+    transition: all 0.3s ease;
+}
+
+.funny-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+}
+
+.funny-item img,
+.funny-item .placeholder {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #ffb6d9, #ffd9e3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.funny-caption {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    background: rgba(255, 105, 180, 0.05);
+}
+
+.funny-emoji-reactions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+.funny-emoji-reactions .emoji {
+    animation: popBounce 1s ease-in-out infinite;
+}
+
+.funny-emoji-reactions .emoji:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.funny-emoji-reactions .emoji:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.funny-emoji-reactions .emoji:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes popBounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.2) translateY(-10px); }
+}
+
+/* ===== ADVENTURE VIEWER ===== */
+.adventure-header {
+    background: linear-gradient(135deg, #87ceeb, #b3e5fc);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.adventure-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adventure-main-image {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.adventure-main-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    animation: slideInLeft 0.6s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.adventure-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: white;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.adventure-location {
+    text-align: center;
+    font-size: 18px;
+    color: #ff69b4;
+    font-weight: 600;
+    padding: 15px;
+    background: rgba(135, 206, 235, 0.1);
+    border-radius: 10px;
+    animation: fadeInUp 0.6s ease;
+}
+
+.location-pin {
+    margin-right: 8px;
+}
+
+/* ===== BEAUTIFUL VIEWER ===== */
+.beautiful-header {
+    background: linear-gradient(135deg, #e1d5f7, #f8bbd0);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.beautiful-gallery {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    animation: polaroidAppear 0.6s ease;
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+@keyframes polaroidAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(-2deg) scale(1);
+    }
+}
+
+.polaroid-image {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+.polaroid-caption {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    color: #666;
+    font-family: cursive;
+    font-style: italic;
+}
+
+.beautiful-sparkles::before,
+.beautiful-sparkles::after {
+    content: '✨';
+    position: absolute;
+    font-size: 30px;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.beautiful-sparkles::before {
+    top: 50%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.beautiful-sparkles::after {
+    top: 50%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ===== LOVE VIEWER ===== */
+.love-header {
+    background: linear-gradient(135deg, #ff69b4, #ffb6d9);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.love-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.love-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+}
+
+.love-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.2), transparent);
+    border-radius: 25px;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.love-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+    animation: fadeInUp 0.6s ease;
+    z-index: 1;
+}
+
+.love-caption {
+    text-align: center;
+    font-size: 20px;
+    color: #666;
+    font-style: italic;
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.floating-hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.float-heart {
+    position: fixed;
+    font-size: 40px;
+    animation: floatUpwards 4s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+.float-heart:nth-child(1) {
+    left: 10%;
+    top: 60%;
+    animation-delay: 0s;
+}
+
+.float-heart:nth-child(2) {
+    right: 15%;
+    top: 70%;
+    animation-delay: 1s;
+}
+
+.float-heart:nth-child(3) {
+    left: 50%;
+    top: 80%;
+    animation-delay: 2s;
+}
+
+@keyframes floatUpwards {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-200px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .memory-modal-content {
+        padding: 25px;
+        max-height: 85vh;
+    }
+
+    .memory-title {
+        font-size: 35px;
+    }
+
+    .gallery-nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .romantic-image-wrapper {
+        max-width: 100%;
+    }
+
+    .adventure-main-image img {
+        height: 300px;
+    }
+
+    .love-image-container {
+        max-width: 100%;
+    }
+
+    .funny-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .memory-modal-content {
+        width: 95%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .memory-title {
+        font-size: 30px;
+    }
+
+    .memory-modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .gallery-nav {
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .image-counter {
+        font-size: 14px;
+    }
+
+    .funny-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .funny-item img,
+    .funny-item .placeholder {
+        height: 120px;
+    }
+}
+/* ===== iOS MOBILE RESPONSIVE ===== */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+    .memory-modal-content {
+        width: 95%;
+        max-width: 100%;
+        padding: 30px 20px;
+        border-radius: 25px;
+        max-height: 95vh;
+    }
+
+    .memory-header h3 {
+        font-size: 18px !important;
+    }
+
+    .memory-header {
+        margin-bottom: 20px;
+    }
+
+    .gallery-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-btn {
+        padding: 12px 20px !important;
+        min-height: 44px !important;
+    }
+
+    .image-counter {
+        padding: 10px 0;
+    }
+
+    .romantic-gallery {
+        padding: 20px;
+    }
+
+    .romantic-image {
+        max-height: 50vh !important;
+        max-width: 100%;
+    }
+
+    .funny-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .funny-item {
+        height: 250px !important;
+    }
+
+    .beautiful-viewer {
+        flex-direction: column;
+    }
+
+    .polaroid-card {
+        width: 100% !important;
+    }
+
+    .love-viewer {
+        padding: 20px;
+    }
+
+    .love-image, video {
+        max-height: 50vh !important;
+        max-width: 100%;
+    }
+
+    .adventure-viewer {
+        padding: 20px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .memory-modal-content {
+        padding: 20px 15px;
+        width: 98%;
+    }
+
+    .memory-header h3 {
+        font-size: 16px !important;
+        margin-bottom: 15px;
+    }
+
+    .memory-gallery-romantic,
+    .memory-gallery-funny,
+    .memory-gallery-adventure,
+    .memory-gallery-beautiful,
+    .memory-gallery-love {
+        padding: 15px;
+    }
+
+    .romantic-intro,
+    .funny-caption,
+    .adventure-caption,
+    .beautiful-caption,
+    .love-caption {
+        font-size: 13px !important;
+    }
+
+    .funny-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .funny-item {
+        height: 200px !important;
+        padding: 10px !important;
+    }
+
+    .funny-caption {
+        font-size: 12px !important;
+    }
+
+    .gallery-nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .nav-btn {
+        padding: 10px 15px !important;
+        font-size: 12px !important;
+    }
+
+    .image-counter {
+        font-size: 12px !important;
+        padding: 8px 0;
+    }
+
+    .emoji-reactions {
+        gap: 5px;
+    }
+
+    .emoji-reaction {
+        font-size: 16px !important;
+    }
+
+    .sparkles {
+        display: none;
+    }
+
+    .location-overlay {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .location-pin {
+        font-size: 16px;
+    }
+
+    .romantic-hearts,
+    .floating-hearts-love {
+        display: none;
+    }
+
+    video {
+        max-height: 40vh !important;
+    }
+}
+
+/* iPhone X notch support */
+@supports (padding: max(0px)) {
+    .memory-modal-content {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+    .memory-modal-content {
+        max-height: 90vh;
+        padding: 20px;
+    }
+
+    .romantic-image,
+    .love-image,
+    .adventure-image,
+    video {
+        max-height: 60vh !important;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

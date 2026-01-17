@@ -1,0 +1,329 @@
+<!-- 
+╔════════════════════════════════════════════════════════════════════╗
+║                   COMPLETE EXAMPLE: READY TO USE                  ║
+║     Copy-paste this entire section into your index.html           ║
+╚════════════════════════════════════════════════════════════════════╝
+-->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 1: ADD THIS TO YOUR <head> SECTION
+     ═══════════════════════════════════════════════════════════════ -->
+
+<head>
+    <!-- ... your existing head content ... -->
+    
+    <!-- Add the QRCode library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <!-- ... rest of your head ... -->
+</head>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 2: ADD THIS BEFORE CLOSING </body>
+     ═══════════════════════════════════════════════════════════════ -->
+
+<!-- QR CODE SECTION - Add this in your <body>, wherever you want the QR -->
+<section id="qr-section" class="qr-section-container">
+    <div class="qr-wrapper">
+        <h2>📱 Share This Magic</h2>
+        <p class="qr-subtitle">Scan to revisit these beautiful wishes anytime</p>
+
+        <div class="qr-display">
+            <div id="qrCode-embedded"></div>
+        </div>
+
+        <div class="qr-actions">
+            <button class="qr-btn qr-btn-download" onclick="downloadQRCode()">
+                📥 Download QR
+            </button>
+            <button class="qr-btn qr-btn-share" onclick="shareQRCode()">
+                🔗 Share Link
+            </button>
+        </div>
+
+        <p class="qr-hint">💡 Works on all devices: Android, iOS, Windows & Mac</p>
+    </div>
+</section>
+
+<!-- CSS STYLING - Add this to your CSS file or in <style> tag -->
+<style>
+    .qr-section-container {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        border-radius: 20px;
+        padding: 50px 30px;
+        margin: 60px auto;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .qr-wrapper h2 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .qr-subtitle {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .qr-display {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        min-height: 320px;
+    }
+
+    #qrCode-embedded {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qr-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .qr-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .qr-btn-download {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .qr-btn-download:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .qr-btn-share {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .qr-btn-share:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+    }
+
+    .qr-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .qr-hint {
+        color: #999;
+        font-size: 12px;
+        margin-top: 15px;
+        font-style: italic;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .qr-section-container {
+            padding: 35px 20px;
+            margin: 40px 15px;
+        }
+
+        .qr-wrapper h2 {
+            font-size: 24px;
+        }
+
+        .qr-display {
+            padding: 20px;
+            min-height: 280px;
+        }
+
+        .qr-actions {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media print {
+        .qr-actions,
+        .qr-hint,
+        .qr-subtitle {
+            display: none;
+        }
+    }
+</style>
+
+<!-- JAVASCRIPT - Add this script in your page or in script.js -->
+<script>
+    // ════════════════════════════════════════════════════════════════
+    // CONFIGURATION - UPDATE THIS WITH YOUR WEBSITE URL
+    // ════════════════════════════════════════════════════════════════
+    
+    const QR_CONFIG = {
+        websiteUrl: "https://yourdomain.com/birthday",
+        // FOR LOCAL TESTING: "http://localhost:8000"
+        // FOR PRODUCTION: "https://yourdomain.com/birthday"
+    };
+
+    // ════════════════════════════════════════════════════════════════
+    // Initialize QR Code on page load
+    // ════════════════════════════════════════════════════════════════
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeQRCode();
+    });
+
+    function initializeQRCode() {
+        const container = document.getElementById('qrCode-embedded');
+        if (!container) {
+            console.error('QR code container not found');
+            return;
+        }
+
+        // Clear previous QR code
+        container.innerHTML = '';
+
+        // Create new QR code
+        try {
+            new QRCode(container, {
+                text: QR_CONFIG.websiteUrl,
+                width: 260,
+                height: 260,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H,
+                useSVG: false
+            });
+            console.log('✓ QR Code initialized');
+        } catch (error) {
+            console.error('Error creating QR code:', error);
+        }
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // Download QR Code as PNG
+    // ════════════════════════════════════════════════════════════════
+    
+    function downloadQRCode() {
+        const canvas = document.querySelector('#qrCode-embedded canvas');
+        
+        if (!canvas) {
+            alert('QR Code not found');
+            return;
+        }
+
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'hasti-birthday-qr.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // Share QR Code URL
+    // ════════════════════════════════════════════════════════════════
+    
+    function shareQRCode() {
+        if (navigator.share) {
+            navigator.share({
+                title: '🎁 Birthday Wishes',
+                text: 'Check out these beautiful birthday wishes!',
+                url: QR_CONFIG.websiteUrl
+            }).catch(err => {
+                if (err.name !== 'AbortError') {
+                    console.error('Share failed:', err);
+                }
+            });
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(QR_CONFIG.websiteUrl).then(() => {
+                alert('✓ URL copied to clipboard!');
+            }).catch(() => {
+                alert('Could not copy URL');
+            });
+        }
+    }
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     THAT'S IT! COMPLETE SETUP
+     ═══════════════════════════════════════════════════════════════ -->
+
+<!-- 
+INSTRUCTIONS:
+1. Update QR_CONFIG.websiteUrl to your actual website URL
+2. Save the file
+3. Test locally with http://localhost:8000
+4. Deploy to production
+5. Share with friends!
+
+TESTING CHECKLIST:
+□ QR code appears on page
+□ Scan with phone camera
+□ Website opens correctly
+□ Download button works
+□ Share button works
+□ Responsive on mobile
+□ No console errors (F12)
+
+CUSTOMIZATION:
+- Change colors: edit colorDark and colorLight
+- Change size: edit width and height (must be equal)
+- Change buttons: edit the HTML button elements
+- Change styling: modify the CSS classes
+-->
+
+<!-- EXAMPLE FOR INDEX.HTML PLACEMENT -->
+<!-- 
+Suggested structure:
+<body>
+    <!-- Header -->
+    <header>...</header>
+
+    <!-- Memory Gallery -->
+    <section id="memory-gallery">...</section>
+
+    <!-- Surprise Section -->
+    <section id="surprise">...</section>
+
+    <!-- QR CODE SECTION - ADD HERE -->
+    <section id="qr-section" class="qr-section-container">
+        ...
+    </section>
+
+    <!-- Footer -->
+    <footer>...</footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+-->

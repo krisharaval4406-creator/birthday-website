@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Birthday">
+    <meta name="theme-color" content="#ff69b4">
+    <title>Memory Viewer 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Hearts -->
+    <div class="cursor-heart"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="hti.mpeg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control -->
+    <div class="music-control">
+        <button id="musicBtn" class="music-btn">🎵</button>
+    </div>
+
+    <!-- Memory Modal -->
+    <div class="memory-modal" id="memoryModal">
+        <div class="memory-modal-overlay"></div>
+        <div class="memory-modal-content" id="memoryModalContent">
+            <button class="memory-modal-close" id="closeModal">&times;</button>
+            
+            <!-- Memory Type Container -->
+            <div id="memoryContainer"></div>
+        </div>
+    </div>
+
+    <!-- Memory Viewer Component (Different Layouts) -->
+    <template id="romanticTemplate">
+        <div class="memory-viewer romantic-viewer">
+            <div class="memory-header">
+                <h1 class="memory-title" id="memoryTitle">💕</h1>
+            </div>
+            <div class="romantic-gallery">
+                <div class="romantic-image-wrapper">
+                    <img id="romanticImage" class="romantic-image" src="" alt="Memory">
+                </div>
+                <div class="romantic-intro" id="romanticIntro"></div>
+                <div class="romantic-hearts">
+                    <div class="heart">💖</div>
+                    <div class="heart">💕</div>
+                    <div class="heart">✨</div>
+                </div>
+            </div>
+            <div class="gallery-nav">
+                <button class="nav-btn prev" id="prevBtn">← Previous</button>
+                <span class="image-counter"><span id="currentIndex">1</span> / <span id="totalImages">5</span></span>
+                <button class="nav-btn next" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="funnyTemplate">
+        <div class="memory-viewer funny-viewer">
+            <div class="memory-header funny-header">
+                <h1 class="memory-title" id="memoryTitle">😂</h1>
+            </div>
+            <div class="funny-gallery">
+                <div class="funny-grid" id="funnyGrid"></div>
+            </div>
+            <div class="funny-emoji-reactions">
+                <span class="emoji">😂</span>
+                <span class="emoji">🤣</span>
+                <span class="emoji">😆</span>
+                <span class="emoji">🎉</span>
+            </div>
+            <div class="gallery-nav">
+                <button class="nav-btn prev" id="prevBtn">← Previous</button>
+                <span class="image-counter"><span id="currentIndex">1</span> / <span id="totalImages">5</span></span>
+                <button class="nav-btn next" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="adventureTemplate">
+        <div class="memory-viewer adventure-viewer">
+            <div class="memory-header adventure-header">
+                <h1 class="memory-title" id="memoryTitle">🌍</h1>
+            </div>
+            <div class="adventure-gallery">
+                <div class="adventure-main-image">
+                    <img id="adventureImage" src="" alt="Adventure">
+                    <div class="adventure-caption" id="adventureCaption"></div>
+                </div>
+            </div>
+            <div class="adventure-location" id="adventureLocation"></div>
+            <div class="gallery-nav">
+                <button class="nav-btn prev" id="prevBtn">← Previous</button>
+                <span class="image-counter"><span id="currentIndex">1</span> / <span id="totalImages">5</span></span>
+                <button class="nav-btn next" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="beautifulTemplate">
+        <div class="memory-viewer beautiful-viewer">
+            <div class="memory-header beautiful-header">
+                <h1 class="memory-title" id="memoryTitle">💐</h1>
+            </div>
+            <div class="beautiful-gallery">
+                <div class="polaroid" id="polaroidContainer">
+                    <img id="beautifulImage" src="" alt="Beautiful Moment" class="polaroid-image">
+                    <div class="polaroid-caption" id="beautifulCaption"></div>
+                </div>
+            </div>
+            <div class="beautiful-sparkles"></div>
+            <div class="gallery-nav">
+                <button class="nav-btn prev" id="prevBtn">← Previous</button>
+                <span class="image-counter"><span id="currentIndex">1</span> / <span id="totalImages">5</span></span>
+                <button class="nav-btn next" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="loveTemplate">
+        <div class="memory-viewer love-viewer">
+            <div class="memory-header love-header">
+                <h1 class="memory-title" id="memoryTitle">💕</h1>
+            </div>
+            <div class="love-gallery">
+                <div class="love-image-container">
+                    <div class="love-glow"></div>
+                    <img id="loveImage" src="" alt="Love Memory" class="love-image">
+                </div>
+                <div class="love-caption" id="loveCaption"></div>
+            </div>
+            <div class="floating-hearts-bg">
+                <div class="float-heart">💖</div>
+                <div class="float-heart">💕</div>
+                <div class="float-heart">✨</div>
+            </div>
+            <div class="gallery-nav">
+                <button class="nav-btn prev" id="prevBtn">← Previous</button>
+                <span class="image-counter"><span id="currentIndex">1</span> / <span id="totalImages">5</span></span>
+                <button class="nav-btn next" id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="memory-viewer.js"></script>
+</body>
+</html>

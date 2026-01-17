@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Birthday">
+    <meta name="theme-color" content="#ff69b4">
+    <title>Happy 22nd Birthday Hatiiiii 🎂💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="memory-viewer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Cursor Hearts -->
+    <div class="cursor-heart"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="hti.mpeg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control -->
+    <div class="music-control">
+        <button id="musicBtn" class="music-btn">🎵</button>
+    </div>
+
+    <!-- ========== MUSIC GATE PAGE ========== -->
+    <section class="music-gate-section" id="musicGateSection">
+        <div class="music-gate-overlay"></div>
+        <div class="music-gate-content">
+            <div class="floating-hearts-bg">
+                <span class="float-heart">💖</span>
+                <span class="float-heart">💕</span>
+                <span class="float-heart">✨</span>
+                <span class="float-heart">💫</span>
+                <span class="float-heart">💖</span>
+            </div>
+
+            <div class="music-gate-card">
+                <h1 class="gate-title">Before we begin… 🎧💖</h1>
+                <p class="gate-subtitle">Play this song for a magical experience</p>
+
+                <div class="music-player-container">
+                    <div class="vinyl-disc" id="vinylDisc">
+                        <div class="vinyl-inner">
+                            <span class="disc-icon">🎵</span>
+                        </div>
+                    </div>
+
+                    <button class="play-btn" id="gateMusicPlayBtn">
+                        <span class="play-icon">▶</span>
+                    </button>
+
+                    <p class="song-name">HAPPY BIRTHDAY PRINCESS💕</p>
+                </div>
+
+                <div class="music-status">
+                    <p id="musicStatusText" class="status-text">Press play to begin the surprise 💫</p>
+                </div>
+
+                <button class="continue-btn" id="continueBtn">
+                    Let's Begin 💕
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- ========== END MUSIC GATE PAGE ========== -->
+
+    <!-- Home Section -->
+    <section class="home-section" id="homeSection" style="display: none;">
+        <div class="home-content">
+            <div class="animated-emoji">🎂</div>
+            <h1 class="main-heading">Happy 22nd Birthday, HATIIII 🎂💖</h1>
+            <p class="sub-text">To the girl who makes life more beautiful just by being in it… 💕</p>
+            
+            <div class="floating-decorations">
+                <div class="decoration heart">💖</div>
+                <div class="decoration star">⭐</div>
+                <div class="decoration balloon">🎈</div>
+                <div class="decoration heart">💕</div>
+                <div class="decoration star">✨</div>
+                <div class="decoration balloon">🎉</div>
+            </div>
+
+            <button class="start-btn" id="startBtn">Tap to Begin the Surprise 🎁</button>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section" id="messageSection" style="display: none;">
+        <div class="message-container">
+            <h2>A Letter Just For You 💌</h2>
+            <div class="message-content">
+                <div class="typewriter-text" id="typewriterText"></div>
+            </div>
+            <div class="message-illustration">
+                <div class="illustration-emoji">💐</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Gallery -->
+    <section class="gallery-section" id="gallerySection" style="display: none;">
+        <h2>Our Beautiful Memories 📸</h2>
+        <div class="gallery-container">
+            <div class="memory-card memory-card-0" style="animation-delay: 0.1s; cursor: pointer;">
+                <div class="memory-image">📷</div>
+                <p class="memory-caption">Our First Memory 🌟</p>
+            </div>
+            <div class="memory-card memory-card-1" style="animation-delay: 0.2s; cursor: pointer;">
+                <div class="memory-image">😂</div>
+                <p class="memory-caption">Hatiiiii's Funniest Moments 😄</p>
+            </div>
+            <div class="memory-card memory-card-2" style="animation-delay: 0.3s; cursor: pointer;">
+                <div class="memory-image">🌍</div>
+                <p class="memory-caption">Unforgettable Times ✨</p>
+            </div>
+            <div class="memory-card memory-card-3" style="animation-delay: 0.5s; cursor: pointer;">
+                <div class="memory-image">💐</div>
+                <p class="memory-caption">Our Beautiful Moments 🎉</p>
+            </div>
+            <div class="memory-card memory-card-4" style="animation-delay: 0.6s; cursor: pointer;">
+                <div class="memory-image">💕</div>
+                <p class="memory-caption">Pure Friendship Love 💞</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Viewer Modal -->
+    <div class="memory-modal" id="memoryModal">
+        <div class="memory-modal-overlay" id="modalOverlay"></div>
+        <div class="memory-modal-content" id="memoryModalContent">
+            <button class="memory-modal-close" id="closeMemoryModal">&times;</button>
+            <div id="memoryViewerContainer"></div>
+        </div>
+    </div>
+
+    <!-- Surprise Section -->
+    <section class="surprise-section" id="surpriseSection" style="display: none;">
+        <div class="surprise-content">
+            <h2>One Last Thing... 🎁</h2>
+            <p class="final-message">
+                Hatiiiii, you are not just my best friend… you are my forever person 💞
+            </p>
+            <p class="final-message-sub">
+                Thank you for being my safe place, my partner in crime, my reason to smile every single day.
+                From silly laughs to deep talks, from small fights to unbreakable bonds…
+                you make my life infinitely more beautiful. 💝
+            </p>
+            
+            <button class="hug-btn" id="hugBtn">A beautiful Hug 🤗</button>
+            
+            <div id="confetti-container"></div>
+        </div>
+    </section>
+
+    <!-- I Love You Section -->
+    <section class="love-section" id="loveSection" style="display: none;">
+        <div class="love-page-container">
+            <iframe src="i-love-you.html" class="love-page-iframe" id="lovePageIframe"></iframe>
+        </div>
+    </section>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots">
+        <span class="dot active" data-section="0"></span>
+        <span class="dot" data-section="1"></span>
+        <span class="dot" data-section="2"></span>
+        <span class="dot" data-section="3"></span>
+        <span class="dot" data-section="4"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

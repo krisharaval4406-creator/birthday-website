@@ -1,0 +1,218 @@
+<!-- ========================================
+     EMBEDDED QR CODE SECTION
+     Use this in your main website (index.html)
+     ======================================== -->
+
+<section id="qr-section" class="qr-section-container">
+    <div class="qr-wrapper">
+        <h2>📱 Share This Magic</h2>
+        <p class="qr-subtitle">Scan to revisit these beautiful wishes anytime</p>
+
+        <div class="qr-display">
+            <div id="qrCode-embedded"></div>
+        </div>
+
+        <div class="qr-actions">
+            <button class="qr-btn qr-btn-download" onclick="downloadEmbeddedQR(event)">
+                📥 Download QR
+            </button>
+            <button class="qr-btn qr-btn-share" onclick="shareQRCode(event)">
+                🔗 Share Link
+            </button>
+        </div>
+
+        <p class="qr-hint">💡 Works on all devices: Android, iOS, Windows & Mac</p>
+    </div>
+</section>
+
+<style>
+    .qr-section-container {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        border-radius: 20px;
+        padding: 50px 30px;
+        margin: 60px auto;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .qr-wrapper h2 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .qr-subtitle {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .qr-display {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        min-height: 320px;
+    }
+
+    #qrCode-embedded {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qr-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .qr-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .qr-btn-download {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .qr-btn-download:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .qr-btn-share {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .qr-btn-share:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+    }
+
+    .qr-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .qr-hint {
+        color: #999;
+        font-size: 12px;
+        margin-top: 15px;
+        font-style: italic;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .qr-section-container {
+            padding: 35px 20px;
+            margin: 40px 15px;
+        }
+
+        .qr-wrapper h2 {
+            font-size: 24px;
+        }
+
+        .qr-display {
+            padding: 20px;
+            min-height: 280px;
+        }
+
+        .qr-actions {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Add this to your main script.js or include it in a separate script tag
+    document.addEventListener('DOMContentLoaded', function() {
+        // Use the same URL from your CONFIG
+        const QR_WEBSITE_URL = "http://10.203.109.119:8001";
+        // Change to your actual deployed URL
+
+        // Initialize embedded QR code
+        new QRCode(document.getElementById('qrCode-embedded'), {
+            text: QR_WEBSITE_URL,
+            width: 260,
+            height: 260,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H,
+            useSVG: false
+        });
+    });
+
+    function downloadEmbeddedQR(event) {
+        event.preventDefault();
+        const canvas = document.querySelector('#qrCode-embedded canvas');
+        if (canvas) {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'birthday-wishes-qr.png';
+            link.click();
+        }
+    }
+
+    function shareQRCode(event) {
+        event.preventDefault();
+        const url = "https://yourdomain.com/birthday"; // Update this
+        
+        if (navigator.share) {
+            navigator.share({
+                title: '🎁 Birthday Wishes',
+                text: 'Check out these beautiful birthday wishes!',
+                url: url
+            }).catch(err => console.log('Share failed:', err));
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(url);
+            alert('Link copied to clipboard!');
+        }
+    }
+</script>
+
+<!-- ========================================
+     HOW TO USE THIS CODE:
+     
+     1. Add this <section> to your index.html (after the memory gallery)
+     
+     2. Include the QRCode library in your <head>:
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+     
+     3. Update "https://yourdomain.com/birthday" with your actual deployed URL
+     
+     4. For offline local testing, use: "http://localhost:8000"
+     
+     5. The QR code will appear automatically on page load
+     
+     6. Users can download or share directly from the website
+     ======================================== -->
