@@ -32,11 +32,11 @@ const memoriesDatabase = {
         title: 'Unforgettable Times ✨',
         intro: 'Every moment with you is an adventure',
         items: [
-            { image: '', location: 'Our Dream Destination', caption: 'Exploring the world together' },
-            { image: '', location: 'That beautiful place', caption: 'You, me, and endless memories' },
-            { image: '', location: 'Where we laughed', caption: 'Adventure awaits' },
-            { image: '', location: 'That sunset moment', caption: 'Best views with you' },
-            { image: '', location: 'Our secret spot', caption: 'Forever wandering with you' }
+            { image: '', caption: 'Exploring the world together' },
+            { image: '', caption: 'You, me, and endless memories' },
+            { image: '', caption: 'Adventure awaits' },
+            { image: '', caption: 'Best views with you' },
+            { image: '', caption: 'Forever wandering with you' }
         ]
     },
     3: {
@@ -156,9 +156,11 @@ function displayFunny(memory) {
             }
         }
         
+        const captionHTML = item.caption ? `<p class="funny-caption">${item.caption}</p>` : '';
+        
         div.innerHTML = `
             ${mediaHTML}
-            <p class="funny-caption">${item.caption}</p>
+            ${captionHTML}
         `;
         div.style.animationDelay = (index * 0.1) + 's';
         grid.appendChild(div);
@@ -168,7 +170,12 @@ function displayFunny(memory) {
 function displayAdventure(item) {
     document.getElementById('adventureImage').src = item.image || '';
     document.getElementById('adventureCaption').textContent = item.caption;
-    document.getElementById('adventureLocation').innerHTML = `<span class="location-pin">📍</span> ${item.location}`;
+    const locationElement = document.getElementById('adventureLocation');
+    if (item.location) {
+        locationElement.innerHTML = `<span class="location-pin">📍</span> ${item.location}`;
+    } else {
+        locationElement.innerHTML = '';
+    }
 }
 
 function displayBeautiful(item) {
