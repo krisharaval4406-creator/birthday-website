@@ -534,39 +534,43 @@ function displayMemory() {
                     Your browser does not support the video tag.
                 </video>`;
             }
+            const funnyCaptionHTML = item.caption ? `<p class="funny-caption">${item.caption}</p>` : '';
             html = `
                 <div class="funny-viewer">
                     ${funnyMedia}
-                    <p class="funny-caption">${item.caption}</p>
+                    ${funnyCaptionHTML}
                     <div class="emoji-reactions">
-                        <span class="emoji-reaction">${item.reaction}</span>
-                        <span class="emoji-reaction">${item.reaction}</span>
-                        <span class="emoji-reaction">${item.reaction}</span>
+                        <span class="emoji-reaction">${item.reaction || ''}</span>
+                        <span class="emoji-reaction">${item.reaction || ''}</span>
+                        <span class="emoji-reaction">${item.reaction || ''}</span>
                     </div>
                 </div>
             `;
             break;
         
         case 'adventure':
+            const locationHTML = item.location ? `
+                        <div class="location-overlay">
+                            <div class="location-pin">📍</div>
+                            <p>${item.location}</p>
+                        </div>` : '';
             html = `
                 <div class="adventure-viewer">
                     <div class="adventure-image-wrapper">
                         <img src="${item.image}" alt="${item.caption}" class="adventure-image">
-                        <div class="location-overlay">
-                            <div class="location-pin">📍</div>
-                            <p>${item.location}</p>
-                        </div>
+                        ${locationHTML}
                     </div>
                 </div>
             `;
             break;
         
         case 'beautiful':
+            const captionHTML = item.caption ? `<p class="polaroid-caption">${item.caption}</p>` : '';
             html = `
                 <div class="beautiful-viewer">
                     <div class="polaroid-card">
                         <img src="${item.image}" alt="${item.caption}" class="polaroid-image">
-                        <p class="polaroid-caption">${item.caption}</p>
+                        ${captionHTML}
                     </div>
                     <div class="sparkles">
                         <span>✨</span>
